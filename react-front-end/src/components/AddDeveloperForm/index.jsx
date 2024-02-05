@@ -1,7 +1,7 @@
-// AddDeveloper.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addWebDeveloper } from '../../redux/actions/DevelopersActions';
+// import { addDeveloper } from '../services/api';
+import { addDeveloper } from '../../redux/actions/DevelopersActions';
 
 function AddDeveloper() {
   const dispatch = useDispatch();
@@ -27,7 +27,14 @@ function AddDeveloper() {
 
   const handleAddDeveloper = (e) => {
     e.preventDefault();
-    dispatch(addWebDeveloper(developer));
+    
+    dispatch(addDeveloper(developer).then(() => {
+      // Handle success if needed
+      console.log('Developer added successfully');
+    }).catch((error) => {
+      // Handle error
+      throw new Error(`Error adding developer: ${error.message}`);
+    }));
   };
 
   const handleAddSkill = () => {
@@ -50,8 +57,6 @@ function AddDeveloper() {
     <div className="container">
       <h1>Add Developer Page</h1>
       <form onSubmit={handleAddDeveloper} className="row g-3">
-        {/* Input fields for developer information */}
-
         <div className="col-md-6">
         <label htmlFor="fullName" className="form-label">Full Name</label>
         <input type="text" className="form-control" id="fullName" name="fullName" value={developer.fullName} onChange={handleInputChange} />
@@ -76,50 +81,36 @@ function AddDeveloper() {
         <label htmlFor="profileImage" className="form-label">Profile Image</label>
         <input type="file" className="form-control" id="profileImage" name="profileImage" onChange={handleInputChange} />
       </div>
-        {/* ... */}
-
         <div className="col-6">
-          <label htmlFor="skills" className="form-label">
-            Skills
-          </label>
+          <label htmlFor="skills" className="form-label">Skills</label>
           <div className="d-flex align-items-start">
-            <button
-              type="button"
-              className="btn btn-success me-3"
-              onClick={handleAddSkill}
-            >
-              Add Skill
-            </button>
-            <div>
-              {(developer.skills.length > 0 ? developer.skills : ['']).map(
-                (skill, index) => (
-                  <div key={index} className="input-group mb-3">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter skill"
-                      value={skill}
-                      onChange={(e) =>
-                        handleSkillInputChange(index, e.target.value)
-                      }
-                    />
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger"
-                      onClick={() => handleRemoveSkill(index)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                )
-              )}
-            </div>
+  <button type="button" className="btn btn-success me-3" onClick={handleAddSkill}>
+    Add Skill
+  </button>
+  <div>
+    {(developer.skills.length > 0 ? developer.skills : ['']).map((skill, index) => (
+      <div key={index} className="input-group mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Enter skill"
+          value={skill}
+          onChange={(e) => handleSkillInputChange(index, e.target.value)}
+        />
+        <button
+          type="button"
+          className="btn btn-outline-danger"
+          onClick={() => handleRemoveSkill(index)}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
           </div>
         </div>
+        </div>
         <div className="col-12">
-          <button type="submit" className="btn btn-primary">
-            Add Developer
-          </button>
+          <button type="submit" className="btn btn-primary">Add Developer</button>
         </div>
       </form>
     </div>

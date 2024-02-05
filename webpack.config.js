@@ -28,9 +28,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: "javascript/auto",
+        test: /\.css$/,
         use: [
           'style-loader',
           'css-loader'
@@ -45,8 +43,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: {
-      'react-toastify': 'react-toastify/dist/react-toastify.cjs.js',
-    },
   },
 };

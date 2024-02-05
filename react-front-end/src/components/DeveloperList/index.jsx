@@ -1,31 +1,40 @@
-// DeveloperList/index.jsx
+// DevelopersList.jsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWebDevelopers } from '../../redux/actions/DevelopersActions';
-import { Link } from 'react-router-dom';
+import { fetchDevelopers } from '../../redux/actions/DevelopersActions';
+import {Link} from 'react-router-dom';
+import DeveloperListCard from '../DeveloperListCard'
 
-function DeveloperList() {
+function DevelopersList() {
   const dispatch = useDispatch();
-  const developers = useSelector((state) => state.developers.webDevelopers);
+  const developers = useSelector((state) => state.developers);
 
   useEffect(() => {
-    dispatch(fetchWebDevelopers());
+    dispatch(fetchDevelopers());
   }, [dispatch]);
 
   return (
     <div>
-      <h1>Developer List</h1>
+      <h1>List of Developers Page</h1>
       <ul>
-        {developers.map((developer) => (
-          <li key={developer.id}>
-            <Link to={`/developer/${developer.id}`}>
-              {developer.fullName} - {developer.city}
-            </Link>
-          </li>
-        ))}
+        {Array.isArray(developers) ? (
+          developers.map((developer) => (
+            <li key={developer.id}>
+              <strong>{developer.fullName}</strong> - {developer.city}
+              <Link to={`/developer/${developer.id}`}>
+                <button>View Details</button>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <div>
+            No developers to display
+            <DeveloperListCard />
+            </div>
+        )}
       </ul>
     </div>
   );
 }
 
-export default DeveloperList;
+export default DevelopersList;

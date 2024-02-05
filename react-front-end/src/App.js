@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage';
-import Developers from './components/DeveloperListCard';
+import DeveloperList from './components/DeveloperList';
 import DeveloperDetails from './components/DeveloperDetails';
 import ReservationForm from './components/ReservationForm';
 import MyReservations from './components/MyReservations';
@@ -19,9 +19,9 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/login" element={<Login />} />
+          {/* <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<WelcomePage />} />
+          <Route path="/" element={<WelcomePage />} /> */}
           <Route
             path="/*"
             element={
@@ -30,7 +30,7 @@ function App() {
                 <div className="content-container">
                   <Routes>
                     <Route index element={<HomePage />} />
-                    <Route path="/developers" element={<Developers />} />
+                    <Route path="/developersList" element={<DeveloperList />} />
                     <Route path="/add-developers" element={<AddDeveloperForm />} />
                     <Route
                       path="/delete-developer/:id"

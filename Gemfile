@@ -52,6 +52,8 @@ gem 'cancancan'
 
 gem 'jwt'
 
-gem 'webpacker'
+gem 'rack-cors'
 
-gem 'rack-cors', require: 'rack/cors'
+gem 'cssbundling-rails'
+
+gem 'sassc', '~> 2.4'

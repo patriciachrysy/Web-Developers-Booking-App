@@ -1,7 +1,14 @@
-// AuthSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { setSessionToken, removeSessionToken } from './authUtils';
+
+// Define your session token functions
+const setSessionToken = (token) => {
+  localStorage.setItem('sessionToken', token);
+};
+
+const removeSessionToken = () => {
+  localStorage.removeItem('sessionToken');
+};
 
 const initialState = {
   user: null,
@@ -16,7 +23,7 @@ const AuthSlice = createSlice({
     loginSuccess: (state, action) => {
       const { user, token } = action.payload;
       setSessionToken(token);
-      toast.success(`Logged in Successfully. Welcome ${user.name}`);
+      toast.success(`Logged in Successfully Welcome ${user.name}`);
       state.user = user;
       state.isAuthenticated = true;
       state.loading = true;

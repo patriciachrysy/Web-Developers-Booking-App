@@ -1,8 +1,8 @@
 // src/components/DeveloperDetail.js
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { getDeveloper, deleteDeveloper } from '../../redux/actions/DevelopersActions'; // Updated import
 import DeveloperCard from '../DeveloperCard';
-import axios from 'axios';
 
 const DeveloperDetail = () => {
   const { id } = useParams();
@@ -13,7 +13,7 @@ const DeveloperDetail = () => {
   useEffect(() => {
     const fetchDeveloper = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/web_developers/${id}`);
+        const response = await getDeveloper(id);
         setDeveloper(response.data);
       } catch (error) {
         console.error('Error fetching developer', error);
@@ -26,7 +26,7 @@ const DeveloperDetail = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/web_developers/${id}`);
+      await deleteDeveloper(id);
       navigate('/developers');
     } catch (error) {
       console.error('Error deleting developer', error);
@@ -39,7 +39,7 @@ const DeveloperDetail = () => {
   }
 
   if (!developer) {
-    return <div>Loading... <DeveloperCard /></div>;
+    return <div>Loading... <DeveloperCard  /></div>;
   }
 
   return (
