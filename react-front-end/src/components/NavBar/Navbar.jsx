@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { FaFacebookF, FaVimeoV, FaPinterestP, FaTwitter, FaGooglePlusG } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
+import { FaFacebookF, FaVimeoV, FaPinterestP, FaGooglePlusG } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineCopyrightCircle } from 'react-icons/ai';
 import { BsTwitter,  } from 'react-icons/bs';
@@ -22,9 +22,7 @@ function Navbar() {
       </nav>
 
       <nav className={`nav ${isNavVisible ? 'show' : 'hidden'}`}>
-        {/* <div className="logo-continer"> */}
           <img className="logo-img" src="https://th.bing.com/th/id/OIG4.e2TdRPOPLhsW0eZMF6_J?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="logo" />
-        {/* </div> */}
         <ul className="sidenav-list d-flex flex-column justify-content-center">
           <li className="sidenav-item">
             <NavLink to="/LandingPage" className="sidenav-link" onClick={toggleSidebar}>

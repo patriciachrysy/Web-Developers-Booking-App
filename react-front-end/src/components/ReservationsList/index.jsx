@@ -1,11 +1,8 @@
-// MyReservations.jsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReservations } from '../../redux/actions/ReservationsActions';
-import ReservationsList from '../ReservationsList';
-import DeleteReservation from '../DeleteReservations';
 
-function MyReservations() {
+function ReservationsList() {
   const dispatch = useDispatch();
   const reservations = useSelector((state) => state.reservations);
 
@@ -21,15 +18,14 @@ function MyReservations() {
   return (
     <div>
       <h1>My Reservations Page</h1>
-      <ReservationsList />
       <ul>
         {Array.isArray(reservations) ? (
           reservations.map((reservation) => (
             <li key={reservation.id}>
-              <strong>Developer: {reservation.developerFullName}</strong> 
-              - Date: {reservation.date} 
+              <strong>Developer: {reservation.developerFullName}</strong>
+              - Date: {reservation.date}
               - Duration: {reservation.duration} hours
-              <DeleteReservation reservationId={reservation.id} onDelete={handleDeleteReservation} />
+              <button onClick={() => handleDeleteReservation(reservation.id)}>Delete Reservation</button>
             </li>
           ))
         ) : (
@@ -40,4 +36,4 @@ function MyReservations() {
   );
 }
 
-export default MyReservations;
+export default ReservationsList;

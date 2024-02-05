@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Noto+Sans+Display:wght@400;700&family=Poppins&display=swap');
 
 .nav-container {
-  width: 130%;
+  width: 20%;
   height: 100vh;
   max-height: 100vh;
   border-right: 3px solid rgba(139, 137, 137, 0.3);
   font-family: 'IBM Plex Sans', sans-serif;
-  position: relative;
+  position: fixed;
 }
 
 .nav {

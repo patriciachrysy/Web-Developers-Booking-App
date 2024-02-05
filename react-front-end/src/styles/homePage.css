@@ -10,10 +10,10 @@
   }
   
   .background-image {
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 80%;
     height: 100%;
     background: url('../images/webpage3.jpg') center/cover no-repeat;
     filter: brightness(0.6);
